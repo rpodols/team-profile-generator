@@ -1,0 +1,14 @@
+{
+  "name": "challenge10",
+  "version": "1.0.0",
+  "description": "## Description This project is the tenth challenge of the coding bootcamp.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
