@@ -8,7 +8,7 @@ const generateHtml = require('./src/generateFiles');
 
 const teamArray = [];
 
-const questionPromptManager = data => {
+const questionPromptManager = () => {
     return inquirer
     .prompt([
         {
@@ -72,11 +72,10 @@ const questionPromptManager = data => {
         
         const manager = new Manager(name, id, email, officeNumber);
         teamArray.push(manager);
-        console.log(manager);
      })
 };
 
-const continueChoices = data => {
+const continueChoices = () => {
     return inquirer
     .prompt([
         {
@@ -91,9 +90,8 @@ const continueChoices = data => {
         } if (data.continues === 'ADD: Intern') {
             return addIntern();
         } if (data.continues === 'DONE: Generate Team Profile')
-            var test = generateHtml(teamArray);
-            console.log(test);
-            return writeToFile(test);
+            var file = generateHtml(teamArray);
+            return writeToFile(file);
         })
 };
 
@@ -160,13 +158,12 @@ const addEngineer = () => {
         
         const engineer = new Engineer(name, id, email, github);
         teamArray.push(engineer);
-        console.log(teamArray);
         continueChoices();
 
     })
 };
 
-const addIntern = internData => {
+const addIntern = () => {
     return inquirer
     .prompt([
         {
@@ -228,9 +225,7 @@ const addIntern = internData => {
         const school = data.school;
         
         const intern = new Intern(name, id, email, school);
-        //console.log(manager);
         teamArray.push(intern);
-        //console.log(teamArray);
         continueChoices();
 
     })
@@ -251,20 +246,7 @@ const writeToFile = fileContent => {
     });
 };
 
-questionPromptManager().then(managerData => {
+questionPromptManager().then(data => {
     return continueChoices();
  });
 
-// questionPromptManager().then(teamArray => {
-//     return generateHtml(teamArray);
-// }).then(htmlCode => {
-//     return writeToFile(htmlCode);
-// });
-
-    //.then(managerData => console.log(generateHtml(managerData)));
-    // .then(htmlData => {
-    //     return generateHtml(htmlData);
-    // })
-    // .then(htmlFile => {
-    //     return writeToFile(htmlFile);
-    // });
