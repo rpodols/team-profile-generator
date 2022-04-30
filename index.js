@@ -91,7 +91,9 @@ const continueChoices = data => {
         } if (data.continues === 'ADD: Intern') {
             return addIntern();
         } if (data.continues === 'DONE: Generate Team Profile')
-            return generateHtml(teamArray);
+            var test = generateHtml(teamArray);
+            console.log(test);
+            return writeToFile(test);
         })
 };
 

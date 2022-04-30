@@ -1,4 +1,37 @@
 function generateHtml(data) {
+    console.log(data);
+    console.log(data.length);
+
+    let newTeamArray = data.map(function(data){
+        //differentField = "Office Number";
+        differentLine = `<p class="card-text">Office Number: ${data.officeNumber}</p>`;
+        if (data.role === 'Engineer'){
+            //differentField = "GitHub";
+            //data.officeNumber = data.github;
+            differentLine = `<p class="card-text">GitHub: <a href='https://github.com/${data.github}' target="_blank">${data.github}</a></p>`;
+        };
+        if (data.role === 'Intern'){
+            //differentField = "School";
+            //data.officeNumber = data.school;
+            differentLine = `<p class="card-text">School: ${data.school}</p>`;
+        }
+    return `<div class="card" style="width: 18rem;">
+            
+    <div class="card-body">
+        <div class="p-3 mb-2 bg-primary text-white text-center">
+            <h5 class="card-title"><i class="${data.image}"></i>   ${data.name}</h5>
+            <p class="card-text">Role: ${data.role}</p>
+        </div>
+        <p class="card-text">ID: ${data.id}</p>
+        <p class="card-text">Email: <a href=mailto:${data.email}>${data.email}</a></p>
+        ${differentLine}
+    </div>
+</div>`
+
+
+})
+var joinedArray = newTeamArray.join(" ");
+console.log(joinedArray);
     var html =
     `<!DOCTYPE html>
     <html lang="en">
@@ -15,25 +48,15 @@ function generateHtml(data) {
         <div class="p-3 mb-2 bg-danger text-white text-center">My Team</div>
         <div class="container">
         <div class="row justify-content-around">
-            <div class="card" style="width: 18rem;">
-                
-                <div class="card-body">
-                    <div class="p-3 mb-2 bg-primary text-white text-center">
-                        <h5 class="card-title"><i class="${data[0].image}"></i>   ${data[0].name}</h5>
-                        <p class="card-text">Role: ${data[0].role}</p>
-                    </div>
-                    <p class="card-text">ID: ${data[0].id}</p>
-                    <p class="card-text">Email: ${data[0].email}</p>
-                    <p class="card-text">Office Number: ${data[0].officeNumber}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+            ${joinedArray}
+        
         </div>
         </div>
         
     </body>
     </html>`
 
+        
     return html;
 };
 
