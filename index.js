@@ -62,7 +62,8 @@ const questionPromptManager = data => {
                     return false;
                 }
             }
-        }
+        },
+        
     ]).then(function(data)  {
         const name = data.name;
         const id = data.id;
@@ -71,13 +72,30 @@ const questionPromptManager = data => {
         
         const manager = new Manager(name, id, email, officeNumber);
         teamArray.push(manager);
-        
-        return teamArray;
-    })
+        console.log(manager);
+     })
 };
 
+const continueChoices = data => {
+    return inquirer
+    .prompt([
+        {
+            type: 'list',
+            name: 'continues',
+            message: 'Please choose an option below: ',
+            choices: ['ADD: Engineer', 'ADD: Intern', 'DONE: Generate Team Profile']
+        }
+    ]).then((data) => {
+        if (data.continues === 'ADD: Engineer') {
+            return addEngineer();
+        } if (data.continues === 'ADD: Intern') {
+            return addIntern();
+        } if (data.continues === 'DONE: Generate Team Profile')
+            return generateHtml(teamArray);
+        })
+};
 
-const questionPromptEngineer = () => {
+const addEngineer = () => {
     return inquirer
     .prompt([
         {
@@ -141,11 +159,12 @@ const questionPromptEngineer = () => {
         const engineer = new Engineer(name, id, email, github);
         teamArray.push(engineer);
         console.log(teamArray);
+        continueChoices();
 
     })
 };
 
-const questionPromptIntern = internData => {
+const addIntern = internData => {
     return inquirer
     .prompt([
         {
@@ -210,6 +229,7 @@ const questionPromptIntern = internData => {
         //console.log(manager);
         teamArray.push(intern);
         //console.log(teamArray);
+        continueChoices();
 
     })
 };
@@ -229,12 +249,15 @@ const writeToFile = fileContent => {
     });
 };
 
+questionPromptManager().then(managerData => {
+    return continueChoices();
+ });
 
-questionPromptManager().then(teamArray => {
-    return generateHtml(teamArray);
-}).then(htmlCode => {
-    return writeToFile(htmlCode);
-});
+// questionPromptManager().then(teamArray => {
+//     return generateHtml(teamArray);
+// }).then(htmlCode => {
+//     return writeToFile(htmlCode);
+// });
 
     //.then(managerData => console.log(generateHtml(managerData)));
     // .then(htmlData => {
