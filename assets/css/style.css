@@ -1,0 +1,20 @@
+.card-styling {
+    border: 1px solid #dfdfdf;
+    border-width: auto;
+    width: auto;
+    display: block;
+    padding-left: 8%; 
+    padding-right: 8%; 
+    padding-top: 6%;
+    padding-bottom: 6%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.card {
+    margin: 4%;
+}
+.header-design {
+    padding: 4%;
+    font-size: xx-large;
+}
