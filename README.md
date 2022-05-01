@@ -49,7 +49,7 @@ Starting from scratch, this challenge required writing code to do the following:
 * any questions, please feel free to reach out via email to rdpodols@gmail.com
 
 ## Link to Project & Screenshot
-![README Generator Screenshot)](/assets/images/applicationImage.png)
+![README Generator Screenshot)](/assets/images/applicationImage1.png)
 [Click here to view the project!](https://rpodols.github.io/team-profile-generator/)
 
 ## Walkthrough Video
